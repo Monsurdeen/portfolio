@@ -29,17 +29,29 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // === Hamburger Menu Toggle ===
+ 
+});
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
   const menuIcon = document.getElementById("menu-icon");
   const navigation = document.getElementById("navigation");
+  const icon = menuIcon.querySelector("i");
+  const navLinks = navigation.querySelectorAll("a");
 
   menuIcon.addEventListener("click", function () {
-    navigation.classList.toggle("active");
+    const isActive = navigation.classList.toggle("active");
+
+    icon.classList.toggle("fa-bars", !isActive);
+    icon.classList.toggle("fa-times", isActive);
   });
 
-  // Optional: close menu on link click (for mobile UX)
-  document.querySelectorAll(".navigation a").forEach(link => {
-    link.addEventListener("click", () => {
+  navLinks.forEach(function (link) {
+    link.addEventListener("click", function () {
       navigation.classList.remove("active");
+      icon.classList.remove("fa-times");
+      icon.classList.add("fa-bars");
     });
   });
 });
